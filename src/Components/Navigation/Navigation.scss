@@ -1,0 +1,63 @@
+@import '../../App';
+
+header {
+   padding: 1.25rem 0;
+
+   .row {
+
+      div {
+         &:nth-child(2) {
+            text-align: center;
+         }
+      }
+
+      .logo {
+         cursor: pointer;
+   
+         h1 {
+            span {
+               color: $primary-nav;
+               letter-spacing: 0;
+            }
+         }
+      }
+   
+      nav {
+         height: 100%;
+         ul {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            height: 100%;
+      
+            li {
+               list-style-type: none;
+               cursor: pointer;
+               font-family: 'Open Sans', sans-serif;
+               text-transform: uppercase;
+               letter-spacing: .10rem;
+               font-size: .85rem;
+               font-weight: 400;
+   
+               &:hover {
+                  color: $primary-nav;
+               }
+            }
+   
+            .sign-up {
+               border: 1px solid $primary-nav;
+               border-radius: 4px;
+               padding: .5rem 1rem;
+               color: $primary-nav; 
+   
+               &:hover {
+                  background-color: $primary-nav;
+                  color: #fff;
+                  transition: .4s;
+               }
+            }
+         }
+      }
+   }
+
+}

@@ -1,0 +1,1 @@
+SELECT * FROM studio_user WHERE email = $1;
