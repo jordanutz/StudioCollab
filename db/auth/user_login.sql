@@ -1,1 +1,1 @@
-SELECT * FROM studio_user WHERE email = $1;
+SELECT * FROM user_studio WHERE email = $1;

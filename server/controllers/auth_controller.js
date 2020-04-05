@@ -4,7 +4,7 @@ module.exports = {
 
   userRegister: async (req, res) => {
     const db = req.app.get('db')
-    const {name, email, password} = req.body
+    const {name, email, password, account} = req.body
     const salt = bcrypt.genSaltSync(10)
     const hash = bcrypt.hashSync(password, salt)
     const findExistingEmail = await db.auth.check_if_exists([email])
@@ -15,13 +15,13 @@ module.exports = {
     } else {
       try {
          // If user is not found by email, register new user in database. 
-        let newUser = await db.auth.user_register([name, email, hash, creator])
+        let newUser = await db.auth.user_register([name, email, hash, account])
 
         newUser = {
           id: newUser[0].id, 
           name: newUser[0].name,
           email: newUser[0].email, 
-          creator: newUser[0].creator
+          account: newUser[0].account
         }
 
         // Assign new user to session storage. 
@@ -45,6 +45,8 @@ module.exports = {
 
     const authedUser = bcrypt.compareSync(password, findExistingUser[0].password)
 
+    console.log(authedUser)
+
     try {
       if (authedUser) {
 
@@ -53,7 +55,7 @@ module.exports = {
             id: findExistingUser[0].id, 
             name: findExistingUser[0].name, 
             email: findExistingUser[0].email, 
-            creator: findExistingUser[0].creator
+            account: findExistingUser[0].account
           }
         ]
         
@@ -70,13 +72,10 @@ module.exports = {
   getUser: (req, res) => {
     if (req.session.user) {
       res.status(200).send(req.session.user)
-    } else {
-      res.sendStatus(401)
-    }
+    } 
   }, 
   userLogout: (req, res) => {
     req.session.destroy();
-    // console.log(req.session.user)
     res.sendStatus(200);
   }
 }

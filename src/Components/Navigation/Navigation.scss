@@ -1,7 +1,10 @@
 @import '../../App';
 
 header {
-   padding: 1.25rem 0;
+   display: flex;
+   align-items: center;
+   min-height: 60px;
+   height: 10vh;
 
    .row {
 
@@ -15,15 +18,24 @@ header {
          cursor: pointer;
    
          h1 {
-            span {
-               color: $primary-nav;
-               letter-spacing: 0;
+            font-weight: 200;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+
+            i {
+               background-image: linear-gradient(-225deg, #A445B2 0%, #D41872 52%, #FF0066 100%);
+               -webkit-background-clip: text;
+               -webkit-text-fill-color: transparent;
+               font-size: 2.5rem;
+      
             }
          }
       }
    
       nav {
          height: 100%;
+
          ul {
             display: flex;
             justify-content: space-evenly;
@@ -33,25 +45,26 @@ header {
             li {
                list-style-type: none;
                cursor: pointer;
-               font-family: 'Open Sans', sans-serif;
-               text-transform: uppercase;
-               letter-spacing: .10rem;
                font-size: .85rem;
                font-weight: 400;
-   
-               &:hover {
-                  color: $primary-nav;
+            
+               a {
+                  color: $body-text;
+
+                  &:hover {
+                     color: $body-text;
+                  }
                }
             }
    
             .sign-up {
-               border: 1px solid $primary-nav;
+               border: 1px solid $body-text;
                border-radius: 4px;
                padding: .5rem 1rem;
-               color: $primary-nav; 
+               color: $body-text;
    
                &:hover {
-                  background-color: $primary-nav;
+                  background-color: $body-text;
                   color: #fff;
                   transition: .4s;
                }

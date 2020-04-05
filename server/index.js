@@ -1,7 +1,7 @@
 const express = require('express')
 const massive = require('massive')
 const session = require('express-session')
-const cors = require('cors')
+const bodyParser = require('body-parser')
 require('dotenv').config()
 const app = express()
 
@@ -10,7 +10,7 @@ const auth = require('./controllers/auth_controller')
 
 // Middleware
 
-app.use(cors())
+app.use(bodyParser.json())
 app.use(session({
    secret: process.env.SESSION_SECRET,
    resave: false,

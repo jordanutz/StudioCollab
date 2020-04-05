@@ -3,20 +3,28 @@ import './Homepage.scss'
 
 // Components
 import {Container, Row, Col} from 'react-bootstrap'
+import {Link} from 'react-router-dom'
 
 const Homepage = () => {
    return (
       <div className="homepage">
          <section className="slider">
-            <Container>    
+            <Container>  
                <Row>
-                  <Col className="text-center" xs={{span:2, offset:4}}>1</Col>
-                  <Col className="text-center" xs={{span:2, offset:0}}>2</Col>
+                  <Col className="text-center mb-3" xs={12}>
+                     {/* <h1><i class="fab fa-youtube mr-2"></i> */}
+                     <h1><span>StudioCollab</span></h1>
+                  </Col>
+               
+               </Row>  
+               <Row>
+                  <Col className="text-center" xs={{span:2, offset:4}}><Link to='/login'>Login</Link></Col>
+                  <Col className="text-center" xs={{span:2, offset:0}}><Link to='/register'>Sign Up</Link></Col>
                </Row>
             </Container>
          </section>
 
-         <section className="solutions dt db">
+         {/* <section className="solutions dt db">
             <Container>
                <Row className="pb-5 text-center">
                   <Col xs={12}>
@@ -47,7 +55,7 @@ const Homepage = () => {
                   </Col>
                </Row>
             </Container>
-         </section>
+         </section> */}
 
       </div>
    )

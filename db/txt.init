@@ -1,0 +1,9 @@
+DROP TABLE user_studio cascade
+
+CREATE TABLE user_studio (
+  id serial primary key,
+  name varchar(255) not null, 
+  email varchar(255) not null, 
+  password text not null, 
+  account boolean not null
+)
