@@ -1,20 +1,21 @@
 import React, {useState} from 'react'
 import '../Register/Register.scss'
 import axios from 'axios'
-import {withRouter} from 'react-router-dom'
+import {withRouter, Redirect} from 'react-router-dom'
 
 // Components
 import Form from 'react-bootstrap/form'
 import {Button, Col, Container, Row} from 'react-bootstrap'
 
 // Redux 
-import {useDispatch} from 'react-redux'
+import {useSelector, useDispatch} from 'react-redux'
 import {setUser} from '../../redux/actions'
 
 const Login = (props) => {
 
    const [login, setLogin] = useState({email: '', password: ''})
    const [validated, setValidated] = useState(false)
+   const user = useSelector(state => state.user.user)
    const dispatch = useDispatch()
 
    const handleSubmit = (event, email, password) => {
@@ -44,6 +45,7 @@ const Login = (props) => {
 
    return (
       <div className="register d-flex align-items-center">
+         { user ? <Redirect to={`/profile/${user.id}`} /> : null }
          <Container>
             <Row>
                <Col md={{span: 6, offset: 3}}>

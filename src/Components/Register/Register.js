@@ -1,10 +1,10 @@
 import React,{useState} from 'react'
 import './Register.scss'
 import axios from 'axios'
-import {withRouter} from 'react-router-dom'
+import {withRouter, Redirect} from 'react-router-dom'
 
 // Redux
-import {useDispatch} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import {setUser} from '../../redux/actions'
 
 // Components
@@ -18,6 +18,7 @@ const Register = (props) => {
    const [toggle, setToggle] = useState(
       {contentCreator: false, talent: false}
    )
+   const user = useSelector(state => state.user.user)
    const dispatch = useDispatch()
   
    const handleSubmit = (event, name, email, password) => {
@@ -51,6 +52,7 @@ const Register = (props) => {
 
    return (
       <div className="register d-flex align-items-center">
+         { user ? <Redirect to={`/profile/${user.id}`} /> : null }
          <Container>
             <Row>
                <Col md={{span: 6, offset: 3}}>

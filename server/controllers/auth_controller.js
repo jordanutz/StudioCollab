@@ -45,8 +45,6 @@ module.exports = {
 
     const authedUser = bcrypt.compareSync(password, findExistingUser[0].password)
 
-    console.log(authedUser)
-
     try {
       if (authedUser) {
 
@@ -70,6 +68,7 @@ module.exports = {
     }
    }, 
   getUser: (req, res) => {
+    console.log(req.session.user, 'get user')
     if (req.session.user) {
       res.status(200).send(req.session.user)
     } 
