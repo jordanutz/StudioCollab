@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import './Navigation.scss'
 import {Link, withRouter} from 'react-router-dom'
 import axios from 'axios'
@@ -14,12 +14,6 @@ const Navigation = (props) => {
 
    const user = useSelector(state => state.user, [])
    const dispatch = useDispatch()
-
-   // useEffect(() => {
-   //    if (!user) {
-   //       props.history.push('/')
-   //    }
-   // },[user])
 
    const userLogout = () => {
       axios.get('/api/logout').then(res => {
@@ -66,7 +60,5 @@ const Navigation = (props) => {
       </header>
    )
 }
-
-
 
 export default withRouter(Navigation)

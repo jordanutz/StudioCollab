@@ -13,8 +13,7 @@ import {setUser} from '../../redux/actions'
 
 const Login = (props) => {
 
-   const [email, setEmail] = useState('')
-   const [password, setPassword] = useState('')
+   const [login, setLogin] = useState({email: '', password: ''})
    const [validated, setValidated] = useState(false)
    const dispatch = useDispatch()
 
@@ -29,17 +28,19 @@ const Login = (props) => {
          event.preventDefault();
          event.stopPropagation();
 
-         const user = {
-            email, 
-            password, 
+         const validatedUser = {
+            email,
+            password
          }
          
-         axios.post('/api/login', user).then(res => {
+         axios.post('/api/login', validatedUser).then(res => {
             dispatch(setUser(res.data[0]))
             props.history.push(`/profile/${res.data[0].id}`)
          })
       }
    }
+
+   const {email, password} = login;
 
    return (
       <div className="register d-flex align-items-center">
@@ -52,14 +53,14 @@ const Login = (props) => {
                         <h2 className="mb-4 text-center">Login</h2>
                            <Form.Row>
                               <Form.Group className="full-email" controlId="validationEmail" as={Col} md="12">
-                                 <Form.Control type="email" placeholder="Email" value={email} onChange={(event) => setEmail(event.target.value)} required>
+                                 <Form.Control type="email" placeholder="Email" value={email} onChange={event => setLogin({...login, email: event.target.value})} required>
                                  </Form.Control>
                                  <Form.Control.Feedback type="invalid">
                                  Please provide a valid email.
                                  </Form.Control.Feedback>
                               </Form.Group>
                               <Form.Group className="full-password" controlId="validationPassword" as={Col} md="12">
-                                 <Form.Control type="password" placeholder="Password" value={password} onChange={(event) => setPassword(event.target.value)} required>
+                                 <Form.Control type="password" placeholder="Password" value={password} onChange={event => setLogin({...login, password: event.target.value})} required>
                                  </Form.Control>
                                  <Form.Control.Feedback type="invalid">
                                  Please provide a valid password.

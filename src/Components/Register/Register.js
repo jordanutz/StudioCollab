@@ -14,9 +14,7 @@ import {Button, Col, Container, Row} from 'react-bootstrap'
 const Register = (props) => {
 
    const [validated, setValidated] = useState(false)
-   const [name, setName] = useState('')
-   const [email, setEmail] = useState('')
-   const [password, setPassword] = useState('')
+   const [register, setRegister] = useState({name: '', email: '', password: ''})
    const [toggle, setToggle] = useState(
       {contentCreator: false, talent: false}
    )
@@ -48,13 +46,16 @@ const Register = (props) => {
       }
    }
 
+   // Destructure Values from State
+   const {name, email, password} = register
+
    return (
       <div className="register d-flex align-items-center">
          <Container>
             <Row>
                <Col md={{span: 6, offset: 3}}>
                   <Row className="form">
-                     <Form noValidate validated={validated} onSubmit={(event) => handleSubmit(event, name, email, password)}>
+                     <Form noValidate validated={validated} onSubmit={event => handleSubmit(event, name, email, password)}>
                         <h2 className="mb-4 text-center">Register Your Account</h2>
                         <Form.Row className="mb-3 d-flex flex-column">
                            <h3 className="mb-4 text-center">Select Your Account Type</h3>
@@ -80,21 +81,21 @@ const Register = (props) => {
                            
                         <Form.Row>
                            <Form.Group className="full-name" controlId="validationName" as={Col} xs="12">
-                              <Form.Control type="text" placeholder="Full Name" value={name} onChange={(event) => setName(event.target.value)} required>
+                              <Form.Control type="text" placeholder="Full Name" value={name} onChange={event => setRegister({...register, name: event.target.value})} required>
                               </Form.Control>
                               <Form.Control.Feedback type="invalid">
                               Please provide a valid name.
                               </Form.Control.Feedback>
                            </Form.Group>
                            <Form.Group className="full-email" controlId="validationEmail" as={Col} md="12">
-                              <Form.Control type="email" placeholder="Email" value={email} onChange={(event) => setEmail(event.target.value)} required>
+                              <Form.Control type="email" placeholder="Email" value={email} onChange={event => setRegister({...register, email: event.target.value})} required>
                               </Form.Control>
                               <Form.Control.Feedback type="invalid">
                               Please provide a valid email.
                               </Form.Control.Feedback>
                            </Form.Group>
                            <Form.Group className="full-password" controlId="validationPassword" as={Col} md="12">
-                              <Form.Control type="password" placeholder="Password" value={password} onChange={(event) => setPassword(event.target.value)} required>
+                              <Form.Control type="password" placeholder="Password" value={password} onChange={event => setRegister({...register, password: event.target.value})} required>
                               </Form.Control>
                               <Form.Control.Feedback type="invalid">
                               Please provide a valid password.
