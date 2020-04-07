@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import '../Register/Register.scss'
 import axios from 'axios'
-import {withRouter, Redirect} from 'react-router-dom'
+import {useHistory, Redirect} from 'react-router-dom'
 
 // Components
 import Form from 'react-bootstrap/form'
@@ -11,12 +11,13 @@ import {Button, Col, Container, Row} from 'react-bootstrap'
 import {useSelector, useDispatch} from 'react-redux'
 import {setUser} from '../../redux/actions'
 
-const Login = (props) => {
+export const Login = () => {
 
    const [login, setLogin] = useState({email: '', password: ''})
    const [validated, setValidated] = useState(false)
    const user = useSelector(state => state.user.user)
    const dispatch = useDispatch()
+   const history = useHistory()
 
    const handleSubmit = (event, email, password) => {
       const form = event.currentTarget;
@@ -36,7 +37,7 @@ const Login = (props) => {
          
          axios.post('/api/login', validatedUser).then(res => {
             dispatch(setUser(res.data[0]))
-            props.history.push(`/profile/${res.data[0].id}`)
+            history.push(`/profile/${res.data[0].id}`)
          })
       }
    }
@@ -81,5 +82,3 @@ const Login = (props) => {
       </div>
    )
 }
-
-export default withRouter(Login)

@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
 import './Register.scss'
 import axios from 'axios'
-import {withRouter, Redirect} from 'react-router-dom'
+import {useHistory, Redirect} from 'react-router-dom'
 
 // Redux
 import {useSelector, useDispatch} from 'react-redux';
@@ -11,7 +11,7 @@ import {setUser} from '../../redux/actions'
 import Form from 'react-bootstrap/form'
 import {Button, Col, Container, Row} from 'react-bootstrap'
 
-const Register = (props) => {
+export const Register = () => {
 
    const [validated, setValidated] = useState(false)
    const [register, setRegister] = useState({name: '', email: '', password: ''})
@@ -20,6 +20,7 @@ const Register = (props) => {
    )
    const user = useSelector(state => state.user.user)
    const dispatch = useDispatch()
+   const history = useHistory()
   
    const handleSubmit = (event, name, email, password) => {
       const form = event.currentTarget;
@@ -41,7 +42,7 @@ const Register = (props) => {
             dispatch(setUser(res.data))
 
             if (user) {
-               props.history.push(`/profile/${res.data.id}`)
+               history.push(`/profile/${res.data.id}`)
             }
          })
       }
@@ -115,5 +116,3 @@ const Register = (props) => {
       </div>
    )
 }
-
-export default withRouter(Register)

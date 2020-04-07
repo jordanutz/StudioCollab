@@ -8,7 +8,7 @@ import {Link, Redirect} from 'react-router-dom'
 // Redux
 import {useSelector} from 'react-redux';
 
-const Homepage = () => {
+export const Homepage = () => {
 
    const user = useSelector(state => state.user.user)
 
@@ -31,5 +31,3 @@ const Homepage = () => {
       </div>
    )
 }
-
-export default Homepage

@@ -1,18 +1,21 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import './Navigation.scss'
-import {Link, withRouter} from 'react-router-dom'
+import {Link, useLocation} from 'react-router-dom'
 
 // Components
 import {Container, Row, Col} from 'react-bootstrap'
 
-const Navigation = (props) => {
+export const Navigation = (props) => {
+
+   const {pathname} = useLocation()
+   const {user, userLogout} = props
 
    return (
       <header>
          <Container>
             <Row>
                <Col md={5} lg={7}>
-                  {props.location.pathname !== '/' && 
+                  {pathname !== '/' && 
                   <section className="logo">
                      <Link to='/'><h1>StudioCollab</h1></Link>
                   </section>
@@ -21,7 +24,7 @@ const Navigation = (props) => {
                <Col md={7} lg={5}>
                   <nav>
                      <ul>
-                        { !props.user &&
+                        { !user &&
                            <React.Fragment>
                               <li><Link to="/features">Features</Link></li>
                               <li><Link to='/pricing'>Pricing</Link></li>
@@ -30,8 +33,8 @@ const Navigation = (props) => {
                         }
 
                         <li>
-                           { props.user ? 
-                              <button className="sign-up" onClick={() => props.userLogout()}>Sign Out</button>
+                           { user ? 
+                              <button className="sign-up" onClick={() => userLogout()}>Sign Out</button>
                               :
                               <Link className="sign-up" to='/register'>Sign Up</Link>
                            }       
@@ -44,5 +47,3 @@ const Navigation = (props) => {
       </header>
    )
 }
-
-export default withRouter(Navigation)
