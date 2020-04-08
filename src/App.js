@@ -4,7 +4,7 @@ import axios from 'axios'
 
 // Components
 import { Navigation } from './Components/Navigation/Navigation'
-import { CustomRoute } from './Components/CustomRoute/CustomRoute'
+import { AuthRoute } from './Components/AuthRoute/AuthRoute'
 import { Footer } from './Components/Footer/Footer'
 import { Homepage } from './Components/Homepage/Homepage'
 import { Register } from './Components/Register/Register'
@@ -50,7 +50,7 @@ function App() {
           <Route exact path='/' component={Homepage} />
           <Route path='/login' component={Login} />
           <Route path='/register' component={Register} />
-          <CustomRoute path='/profile/:id' user={user} render={() => <Dashboard /> } />
+          <AuthRoute path='/profile/:id' user={user} render={() => <Dashboard /> } />
           <Route component={NotFound} />
         </Switch>
       </main>
