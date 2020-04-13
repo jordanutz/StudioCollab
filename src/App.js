@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import './App.scss';
 import axios from 'axios'
 
@@ -22,8 +22,10 @@ import {useSelector, useDispatch} from 'react-redux';
 function App() {
 
   const user = useSelector(state => state.user.user)
+  const [toggleLogin, setToggleLogin] = useState(false)
   const history = useHistory()
   const dispatch = useDispatch()
+  const overlay = useRef()
 
    useEffect(() => {
       window.scrollTo(0, 0)
@@ -44,17 +46,18 @@ function App() {
 
   return (
     <div className="App">
-      <Navigation userLogout={userLogout} user={user} />
+      <Navigation userLogout={userLogout} user={user} toggleLogin={toggleLogin} setToggleLogin={setToggleLogin} />
+      {toggleLogin && <Login setToggleLogin={setToggleLogin} />}
       <main>
         <Switch>
-          <Route exact path='/' component={Homepage} />
-          <Route path='/login' component={Login} />
+          <Route exact path='/'render={() => <Homepage toggleLogin={toggleLogin} setToggleLogin={setToggleLogin} /> } />
           <Route path='/register' component={Register} />
           <AuthRoute path='/profile/:id' user={user} render={() => <Dashboard /> } />
           <Route component={NotFound} />
         </Switch>
       </main>
       <Footer />
+      {toggleLogin && <section ref={overlay} className="App__overlay" onClick={() => setToggleLogin(false)}></section> }
     </div>
   );
 }

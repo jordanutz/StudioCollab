@@ -1,44 +1,42 @@
 import React from 'react'
 import './Navigation.scss'
-import {Link, useLocation} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 // Components
 import {Container, Row, Col} from 'react-bootstrap'
 
-export const Navigation = (props) => {
-
-   const {pathname} = useLocation()
-   const {user, userLogout} = props
+export const Navigation = ({user, toggleLogin, setToggleLogin}) => {
 
    return (
-      <header>
+      <header className="header">
          <Container>
-            <Row>
-               <Col md={5} lg={7}>
-                  {pathname !== '/' && 
-                  <section className="logo">
-                     <Link to='/'><h1>StudioCollab</h1></Link>
+            <Row style={{margin: 0}}>
+               <Col md={5} lg={6} style={{padding: 0}}>
+                  <section className="header__logo">
+                     <Link to='/'>
+                        <h1>StudioCollab</h1>
+                     </Link>
                   </section>
-                  }   
                </Col>
-               <Col md={7} lg={5}>
-                  <nav>
-                     <ul>
+               <Col md={7} lg={6} style={{padding: 0}}>
+                  <nav className="header__nav">
+                     <ul className="header__nav-list">
                         { !user &&
                            <React.Fragment>
-                              <li><Link to="/features">Features</Link></li>
-                              <li><Link to='/pricing'>Pricing</Link></li>
-                              <li><Link to='/login'>Login</Link></li>
+                              <li className="header__nav-item">
+                                 <Link className="header__nav-link" to='/features'>Features</Link>
+                              </li>
+                              <li className="header__nav-item">
+                                 <Link className="header__nav-link" to='/pricing'>Pricing</Link>
+                              </li>
+                              <li className="header__nav-item">
+                                 <Link to='#' onClick={() => setToggleLogin(!toggleLogin)} className="header__nav-link">Login</Link>
+                              </li>
+                              <li className="header__nav-item">
+                                 <Link id="sign-up" className="header__nav-link" to='/register'>Sign Up</Link>
+                              </li>
                            </React.Fragment>
                         }
-
-                        <li>
-                           { user ? 
-                              <button className="sign-up" onClick={() => userLogout()}>Sign Out</button>
-                              :
-                              <Link className="sign-up" to='/register'>Sign Up</Link>
-                           }       
-                        </li>
                      </ul>
                   </nav>
                </Col>

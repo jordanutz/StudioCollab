@@ -20,63 +20,56 @@ time, mark, audio, video {
 	vertical-align: baseline;
    box-sizing: border-box;
 	line-height: 1.35;
-	font-weight: 300;
-	color: $body-text;
+	color: $primary-text;
+	font-family: $font-stack;
+	-webkit-font-smoothing: antialiased;
 }
 
-a {
-	color: $primary-nav;
+img {
+	max-width: 100%;
+	height: auto;
+}
 
-	&:hover {
-		text-decoration: none;
-		color: $primary-nav;
-	}
+a:hover {
+	text-decoration: none;
 }
 
 main {
 	height: 90vh;
 }
 
-h1 {
-	font-size: 2rem;
-	font-weight: 200;
-
-
-
-	span {
-		color: $body-text;
-		font-weight: 200;
-	}
-}
-
 label {
 	font-family: $font-stack;
-	font-weight: 200;
+}
+
+h1, h2 {
+	font-weight: 900;
+}
+
+h1 {
+	font-size: 2.5rem;
+	font-weight: 900;
+	letter-spacing: -1px;
 }
 
 h2 {
-	font-size: 1.5rem;
-	font-weight: 200;
+	font-size: 2.4rem;
 }
 
 h3 {
-	font-size: 1.3rem;
-	font-weight: 200;
+	font-size: 1.5rem;
 }
 
 h4 {
-	font-size: 1.2rem;
-	font-weight: 200;
+	font-size: 1.3rem;
 }
 
 h5 {
-	font-size: 1.1rem;
-	font-weight: 200;
+	font-size: 1.2rem;
 }
 
 h6 {
 	font-size: 1rem;
-	font-weight: 200;
 }
 
 .dt {
@@ -89,18 +82,21 @@ h6 {
 
 .form-control {
 	border: none;
-	border-bottom: 1px solid #ced4da;
-	font-family: $font-stack;
+	font-family: "Muli", sans-serif;
 	font-weight: 400;
 	font-size: .9rem;
-	margin-bottom: 10px;
-	padding-left: 35px;
+	padding-left: 40px;
+	position: relative;
 
 	&::placeholder {
-		color: $body-text;
+		color: $primary-text;
 	 }
 }
 
 .form-control.is-invalid, .was-validated .form-control:invalid {
 	border-radius: 0;
+}
+
+.form-invalid {
+	position: absolute;
 }

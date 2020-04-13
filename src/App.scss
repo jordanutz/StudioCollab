@@ -1,4 +1,22 @@
-$font-stack: 'Quicksand', sans-serif;
-$body-text: #1C1C1C;
-$primary-nav: #fff;
+$font-stack: 'Muli', sans-serif;
+$secondary-font: 'Open Sans', sans-serif;
+$primary-text: #323333;;
+$primary-background: #f7f7f8;
+$primary-color: #0653E2;
 
+.App {
+   position: relative;
+}
+
+.App__overlay {
+   background: rgba(0, 0, 0, 0.55);
+   width: 100%;
+   top: 0;
+   bottom: 0;
+   right: 0;
+   height: 100%;
+   left: 0;
+   z-index: 1;
+   position: fixed;
+   cursor: pointer;
+}

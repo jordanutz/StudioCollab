@@ -1,0 +1,71 @@
+.login {
+   height: 100%;
+   top: 0;
+   z-index: 2;
+   bottom: 0;
+   right: 0;
+   position: fixed;
+
+   &__form {
+      background: #fff;
+      padding: 0 50px;
+      z-index: 2;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      max-width: 400px;
+   }
+
+   &__email {
+      border-bottom: 1px solid #e0e0e0;
+      margin-bottom: 25px;
+
+      &::before {
+         font-family: "Font Awesome 5 Free";
+         background-color: #0653E2;
+         -webkit-background-clip: text;
+         -webkit-text-fill-color: transparent;
+         content: "\f0e0";
+         position: absolute;
+         top: 50%;
+         transform: translateY(-50%);
+         left: 15px;
+         font-size: 21px;
+         z-index: 1;
+      }
+   }
+
+   &__password {
+      border-bottom: 1px solid #e0e0e0;
+      margin-bottom: 25px;
+      
+      &::before {
+         font-family: "Font Awesome 5 Free";
+         background-color: #0653E2;
+         -webkit-background-clip: text;
+         -webkit-text-fill-color: transparent;
+         content: "\f144";
+         position: absolute;
+         top: 50%;
+         transform: translateY(-50%);
+         left: 15px;
+         font-size: 21px;
+         z-index: 1;
+      }
+   }
+
+   button {
+      text-transform: uppercase;
+      border-radius: 4px;
+      cursor: pointer;
+      color: #efefef;
+      transition: box-shadow 0.2s ease,transform 0.1s ease;
+      background: #0653E2;
+      width: 100%;
+      border: none;
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .1px;
+      min-height: 50px;
+   }
+}
